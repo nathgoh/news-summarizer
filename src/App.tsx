@@ -1,37 +1,72 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './styles/App.css'
 import axios from 'axios'
+import { PulseLoader } from 'react-spinners'
 
 function App() {
+  const [loading, setLoading] = useState(false)
+  const [disabled, setDisabled] = useState(false)
   const [searchInput, setSearchInput] = useState<string>("")
+  const [summaryResults, setSummaryResults] = useState<string>("")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value)
   }
-  
+
   const handleOnClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const url = "http://127.0.0.1:8000/news/topic=" + searchInput 
-    axios.get(url).then((response) => {  
-      console.log(response.data)
-    })  
+    setLoading(true)
+    setDisabled(true)
     e.preventDefault()
   }
 
+  useEffect(() => {
+    if (loading && disabled) {
+      const url = "http://127.0.0.1:8000/news_summary/topic=" + searchInput 
+      axios.get(url).then((response) => {  
+        setSummaryResults(response.data["news_summary"])
+      })  
+    }
+  }, [loading, disabled, searchInput])
+
+  useEffect(() => {
+    if (summaryResults) {
+      setLoading(false)
+      setDisabled(false)
+    }
+  }, [summaryResults])
+
+
+  // const processSummaryResult = (summary: {"news_summary": string, "news_article": SearchResults}) => {
+  //   return summary["news_summary"]
+  // }
+
   return (
     <>
-      <h1 id='app-title'> Summarize News App </h1>
+      <h1 id='app-title'> News Summarizer </h1>
       <div className="search-container">
         <form id="search-form" action="search" method="GET">
           <input 
             id="search-bar"
             name="topic"
             type="text"
-            placeholder="Search for news!"
+            placeholder="Enter a news topic to summarize!"
             value={searchInput}
             onChange={handleChange}
           />
-          <button id="search-button" type="submit" onClick={handleOnClick}> Search </button>
+          <button id="summary-button" type="submit" onClick={handleOnClick} disabled={disabled}> 
+            Search 
+          </button>
+          <PulseLoader
+            loading={loading}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
         </form>
+        <div className="summary-container">
+          <p>
+            {summaryResults}
+          </p>
+        </div>
       </div>
     </>
   )
