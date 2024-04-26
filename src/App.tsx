@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
-import './styles/App.css'
 import axios from 'axios'
-import { PulseLoader } from 'react-spinners'
+
+import CircularProgress from '@mui/material/CircularProgress';
+
+import './styles/App.css'
 
 function App() {
   const [loading, setLoading] = useState(false)
@@ -49,18 +51,16 @@ function App() {
             id="search-bar"
             name="topic"
             type="text"
-            placeholder="Enter a news topic to summarize!"
+            placeholder="Enter a news topic!"
             value={searchInput}
             onChange={handleChange}
           />
           <button id="summary-button" type="submit" onClick={handleOnClick} disabled={disabled}> 
             Search 
           </button>
-          <PulseLoader
-            loading={loading}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
+          <div id="summary-loading-animation">
+            {loading && <CircularProgress />}
+          </div> 
         </form>
         <div className="summary-container">
           <p>
