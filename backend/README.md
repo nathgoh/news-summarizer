@@ -17,8 +17,8 @@ make install
 This will create the virtual environment `news-llm` with the necessary packages installed.
 
 ### API Keys
-In the parent directory `news-summarizer-backend` there is a file named `.env`.
-In the `.env` file, add your API keys for [NewsAPI](https://newsapi.org/) and [Hugging Face](https://huggingface.co/).
+In the parent directory `news-summarizer-backend` there is a file named `.env_TEMPLATE`.
+In the `.env_TEMPLATE` file, add your API keys for [NewsAPI](https://newsapi.org/) and [Hugging Face](https://huggingface.co/). Rename `.env_TEMPLATE` to `.env`
 ```
 NEWS_API_KEY=INSERT_YOUR_API_KEY
 HUGGINGFACEHUB_API_TOKEN=INSERT_YOUR_API_KEY
