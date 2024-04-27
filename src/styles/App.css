@@ -1,16 +1,16 @@
 #root {
   margin: 0 auto;
-  text-align: center;
-  align-content: center;
 }
 
-.card {
-  padding: 2rem;
+#app-title {
+  text-align: center;
+  align-content: center;
 }
 
 #search-form {
   padding: 1rem;
   align-content: center;
+  text-align: center;
 }
 
 #search-bar {
@@ -51,9 +51,8 @@
   margin-top: 2rem; 
 }
 
-#spinner {
-  width: 3rem; 
-  height: 3rem;
+#references {
+  color: rgba(255, 255, 255, 0.8);
 }
 
 @media screen and (max-width: 550px) {

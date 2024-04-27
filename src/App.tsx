@@ -1,15 +1,21 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import { useState, useEffect } from "react"
+import axios from "axios"
 
-import CircularProgress from '@mui/material/CircularProgress';
+import Box from "@mui/material/Box"
+import Card from "@mui/material/Card"
+import CircularProgress from "@mui/material/CircularProgress"
 
-import './styles/App.css'
+import "./styles/App.css"
+import Footer from "./components/Footer"
+import SummaryCard from "./components/SummaryCard"
+import { Article } from "./types/News"
 
 function App() {
   const [loading, setLoading] = useState(false)
   const [disabled, setDisabled] = useState(false)
   const [searchInput, setSearchInput] = useState<string>("")
   const [summaryResults, setSummaryResults] = useState<string>("")
+  const [newsArticles, setNewsArticles] = useState<Article[]>([])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value)
@@ -26,6 +32,7 @@ function App() {
       const url = "http://127.0.0.1:8000/news_summary/topic=" + searchInput 
       axios.get(url).then((response) => {  
         setSummaryResults(response.data["news_summary"])
+        setNewsArticles(response.data["news_articles"])
       })  
     }
   }, [loading, disabled, searchInput])
@@ -38,13 +45,9 @@ function App() {
   }, [summaryResults])
 
 
-  // const processSummaryResult = (summary: {"news_summary": string, "news_article": SearchResults}) => {
-  //   return summary["news_summary"]
-  // }
-
   return (
     <>
-      <h1 id='app-title'> News Summarizer </h1>
+      <h1 id="app-title"> News Summarizer </h1>
       <div className="search-container">
         <form id="search-form" action="search" method="GET">
           <input 
@@ -63,11 +66,17 @@ function App() {
           </div> 
         </form>
         <div className="summary-container">
-          <p>
-            {summaryResults}
-          </p>
+          {
+            summaryResults &&
+            <Box sx={{ maxWidth: 700, minWidth:275 }}>
+              <Card id="summary-card">
+                <SummaryCard summaryResults={summaryResults} newsArticles={newsArticles}/>
+              </Card>
+            </Box>
+          }
         </div>
       </div>
+      <Footer/>
     </>
   )
 }

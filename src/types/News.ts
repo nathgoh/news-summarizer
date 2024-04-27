@@ -13,16 +13,3 @@ export declare interface Article {
 	publishedAt: 	string;
 	content:     	string;
 }
-
-export declare interface Results {
-	status:       string;  
-	totalResults: number;      
-	articles:     Article[];
-}
-
-export declare interface SearchResults {
-	Query: 			string;
-	NextPage: 		number;
-	TotalPages: 	number;
-	Results: 		Results;
-}
