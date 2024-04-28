@@ -35,7 +35,7 @@ const SummaryCard = (props: {summaryResults: string, newsArticles: Article[]}) =
           </Typography>
         </Button>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
+      <Collapse id="references-collapse" in={expanded} timeout="auto" unmountOnExit>
         <ul>
           {props.newsArticles && props.newsArticles.map((article, idx) => (
             <Typography variant="subtitle1" gutterBottom>

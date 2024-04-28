@@ -9,10 +9,10 @@ const IconLinks = () => {
     return (
         <>
             <Link className="link" color="#eeeeee"  href="https://github.com/nathgoh">
-            <GitHubIcon fontSize="large" />
+            <GitHubIcon fontSize="medium" />
             </Link>
             <Link className="link" color="#eeeeee" href="https://linkedin.com/in/nathgoh">
-                <LinkedInIcon fontSize="large" />
+                <LinkedInIcon fontSize="medium" />
             </Link>
         </>
     );
@@ -30,10 +30,10 @@ const Footer = () => {
                 right: 0,
                 width: "100%",
                 backgroundColor: "#1a1a1a",
-                paddingTop:1
+                paddingTop: 1,
             }}
         >
-            <Box sx={{p:1}}>
+            <Box sx={{p:0.5}}>
                 <IconLinks />
             </Box>
         </Box>

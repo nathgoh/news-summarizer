@@ -51,10 +51,6 @@
   margin-top: 2rem; 
 }
 
-#references {
-  color: rgba(255, 255, 255, 0.8);
-}
-
 @media screen and (max-width: 550px) {
   #search-bar {
     width: 10rem;
