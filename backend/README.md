@@ -2,8 +2,8 @@
 This is the backend implementation of News Summarizer. 
 
 ## Overview
-- Utilize NewsAPI to retrieve the top ten most relevant news articles for a user-defined topic. 
-- Implement a map reduce summarizer using LangChain and LLMs to summarize the ten news articles
+- Utilize NewsAPI to retrieve the top five most relevant news articles for a user-defined topic. 
+- Implement a map reduce summarizer using LangChain and LLMs to summarize the five news articles
 
 ## Code Development 
 ### Installation
