@@ -21,18 +21,6 @@ lint:
 run:
 	uvicorn main:app --reload
 
-uninstall:
-	pip uninstall -y dagster_natron
-	@echo '======================================================================='
-	@echo 'Uninstalled dagster_natron'
-	@echo '======================================================================='
-	@echo 'Deactivate conda environment with:'
-	@echo '     $$ conda deactivate'
-	@echo '======================================================================='
-	@echo 'Remove conda environment with:'
-	@echo '     $$ make remove-conda'
-	@echo '======================================================================='
-
 remove-conda:
 	$(CONDA) remove --name $(ENV_NAME) --all -y
 	@echo '======================================================================='
